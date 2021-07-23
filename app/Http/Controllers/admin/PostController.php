@@ -81,10 +81,10 @@ class PostController extends Controller
         $validatedData = $request ->validate([
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
-            'image' => 'required',
+            //'image' => 'required',
         ]);
         $post->update($validatedData);
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('adminposts.index');
     }
 
     /**
@@ -96,7 +96,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('adminposts.index');
 
     }
 }

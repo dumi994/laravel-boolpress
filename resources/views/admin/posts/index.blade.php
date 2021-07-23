@@ -4,7 +4,7 @@
 <!-- 
 <h1>Create a new post</h1>
 
-<form action="{{route('admin.posts.store')}}" method="post"> -->
+<form action="{{route('adminposts.store')}}" method="post"> -->
   <!-- Token non lo scordare altrimenti error! -->
   @csrf
 <!-- <div class="form-group">
@@ -30,7 +30,7 @@
 <div class="d-flex justify-content-between">
     <h1>All Posts </h1>
     <div>
-        <a class="btn btn-primary" href="{{route('admin.posts.create')}}"> <i class="fas fa-plus-circle fa-sm fa-fw"></i> Add a post</a>
+        <a class="btn btn-primary" href="{{route('adminposts.create')}}"> <i class="fas fa-plus-circle fa-sm fa-fw"></i> Add a post</a>
     </div>
 </div>
 
@@ -55,14 +55,14 @@
                 {{$post->title}}
             </td>
             <td class="d-flex">
-                <a href="{{route('admin.posts.show', $post->id )}}" class="btn btn-primary">
+                <a href="{{route('adminposts.show', $post->id )}}" class="btn btn-primary">
                     <i class="fas fa-eye fa-sm fa-fw"></i>
                 </a>
-                <a href="{{route('admin.posts.edit', $post->id )}}" class="btn btn-secondary">
+                <a href="{{route('adminposts.edit', $post->id )}}" class="btn btn-secondary">
                     <i class="fas fa-pencil-alt fa-sm fa-fw"></i>
                 </a>
 
-                <form action="{{ route('admin.posts.destroy', $post->id) }}" method="post">
+                <form action="{{ route('adminposts.destroy', $post->id) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger"><i class="fas fa-trash fa-sm fa-fw"></i></button>
