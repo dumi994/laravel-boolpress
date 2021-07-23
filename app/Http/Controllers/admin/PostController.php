@@ -41,7 +41,7 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
-            'image' => 'required | image | max: 50',
+            'image' => 'required | image | max: 500',
         ]);
         Post::create($validatedData);
         return redirect()->back();

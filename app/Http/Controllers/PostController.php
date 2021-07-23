@@ -32,7 +32,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('guest.posts.show', compact('post'));
+        return view('guests.posts.show', compact('post'));
     }
 
     /**

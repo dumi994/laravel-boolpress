@@ -28,7 +28,7 @@
                 <aside>
                     <ul class="nav flex-column">
                             <li class="nav-item nav-pills">
-                                <a class="nav-link {{Route::currentRouteName() === 'admin.dashboard' ? 'active' : ''}}" href="{{route('admindashboard')}}">Dashboard</a>
+                                <a class="nav-link {{Route::currentRouteName() === 'admindashboard' ? 'active' : ''}}" href="{{route('admindashboard')}}">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Posts</a>
