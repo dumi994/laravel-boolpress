@@ -81,7 +81,7 @@ class PostController extends Controller
         $validatedData = $request ->validate([
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
-            //'image' => 'required',
+            'image' => 'required | mimes:jpeg,bmp,png',
         ]);
         $post->update($validatedData);
         return redirect()->route('adminposts.index');
