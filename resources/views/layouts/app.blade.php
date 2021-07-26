@@ -36,9 +36,9 @@
                         <li class="nav-item">
                             <a href="{{route('adminposts.index')}}">Admin Panel</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('adminposts.index')}}">Contact Me</a>
-                        </li>
+                        <!-- <li class="nav-item">
+                            <a href="{{route('guests.contacts')}}">Contact Me</a>
+                        </li> -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
