@@ -89,7 +89,7 @@
                                     <a class="nav-link {{Route::currentRouteName() === 'adminposts.index' ? 'active' : ''}}" href="{{ route('adminposts.index')}}">Posts</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Users</a>
+                                    <a class="nav-link" href="">Users</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Categories</a>

@@ -41,7 +41,7 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
-            'image' => 'required | image | max: 500',
+            'image' => 'required | mimes:jpg,bmp,png | max: 5000',
         ]);
         Post::create($validatedData);
         return redirect()->back();
@@ -81,7 +81,7 @@ class PostController extends Controller
         $validatedData = $request ->validate([
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
-            'image' => 'required | mimes:jpeg,bmp,png',
+            'image' => 'required | mimes:jpg,bmp,png | max: 5000',
         ]);
         $post->update($validatedData);
         return redirect()->route('adminposts.index');
