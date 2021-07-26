@@ -27,6 +27,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        
         return view('admin.posts.create');
     }
 
@@ -39,17 +40,25 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'title' => 'required | max:255 | min:5',
+            'title' => 'required  | min:5 | max:255',
             'body' => 'required',
-            'image' => 'required | image | max: 500',
+            'image' => 'required | file',
         ]);
+        if($request->hasFile('image')){
+             $file_path = Storage::put('posts_images', $validatedData['image']);
+
+        $validatedData['image'] = $file_path;
+        }
+       
+        
         Post::create($validatedData);
-        return redirect()->back();
+        //return redirect()->back();
+        return redirect()->route('adminposts.index');
     }
 
     /**
      * Display the specified resource.
-     *
+     *  
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
@@ -81,8 +90,14 @@ class PostController extends Controller
         $validatedData = $request ->validate([
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
-            'image' => 'required | mimes:jpeg,bmp,png',
+            'image' => 'required | image',
         ]);
+        //$request->hasFile('image');
+        if(array_key_exists('image', $validatedData)){
+            $file_path = Storage::put('posts_images', $validatedData['image']);
+            $validatedData['image'] = $file_path;
+        }
+        //ddd($validatedData);
         $post->update($validatedData);
         return redirect()->route('adminposts.index');
     }
