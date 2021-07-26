@@ -19,7 +19,7 @@
               <label for="message">Message</label>
               <textarea class="form-control" name="message" id="message" rows="5"></textarea>
             </div>
-            <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block"></button>
+            <button type="button" name="" id="" class="btn btn-primary btn-lg btn-block">Submit</button>
         </form>
     </div>
 @endsection

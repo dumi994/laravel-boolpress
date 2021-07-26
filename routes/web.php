@@ -23,7 +23,7 @@ Auth::routes();
 /* Altre Pagine non connesse ad un entitá/modello  */
 Route::get('/', 'PostController@index');
 Route::get('about', 'PostController@about');
-Route::get('contacts', 'PostController@contacts');
+Route::get('contacts', 'PageController@contacts');
 
 /* Posts per l'utente */
 Route::get('posts', 'PostController@index')->name('posts.index');
