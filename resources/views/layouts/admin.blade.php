@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -62,19 +61,19 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
+
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>
                         </li>
-                        
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <main class="">
+        <main class="py-4">
 
             <div class="container">
                 <div class="row">
@@ -90,7 +89,7 @@
                                     <a class="nav-link {{Route::currentRouteName() === 'adminposts.index' ? 'active' : ''}}" href="{{ route('adminposts.index')}}">Posts</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link " href="#">Users</a>
+                                    <a class="nav-link" href="#">Users</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Categories</a>
