@@ -21,7 +21,9 @@
         <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" placeholder="add a title" aria-describedby="titleHelper" value="{{old('title')}}">
         <small id="titleHelper" class="text-muted">Type a title for the current post, max: 255 char</small>
     </div>
-
+    @error('title')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
  
     <div class="form-group">
          <label for="image">Cover Image</label>

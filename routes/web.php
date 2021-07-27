@@ -23,6 +23,8 @@ Auth::routes();
 Route::get('/', 'PostController@index');
 Route::get('about', 'PostController@about');
 Route::get('contacts', 'PageController@contacts')->name('guests.contacts');
+Route::post('contacts', 'PageController@sendContactForm')->name('guests.send');
+
 
 /* Posts per l'utente */
 Route::get('posts', 'PostController@index')->name('posts.index');
