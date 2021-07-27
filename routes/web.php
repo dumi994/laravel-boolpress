@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/', 'PostController@index');
 Route::get('about', 'PostController@about');
 Route::get('contacts', 'PageController@contacts')->name('guests.contacts');
-Route::post('contacts', 'PageController@sendContactForm')->name('guests.send');
+Route::post('contacts', 'PageController@sendContactForm')->name('contacts.send');
 
 
 /* Posts per l'utente */
@@ -38,5 +38,14 @@ Route::middleware('auth')->namespace('admin')->name('admin')->prefix('admin')->g
     Route::resource('posts', PostController::class);
 });
 
+/* blocca registrazioni */
+//Auth::routes(['register' => false]);
 
+/* 
+tabella categorie
+- migration
+- model
+- controller (resource nel namespace admin/)
+- seeder
 
+*/

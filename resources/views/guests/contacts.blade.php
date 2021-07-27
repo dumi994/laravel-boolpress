@@ -36,9 +36,7 @@
           <label for="message">Message</label>
           <textarea class="form-control" name="message" id="message" rows="5">{{old('message')}}</textarea>
         </div>
-          @error('message')
-          <div class="alert alert-danger">{{ $message }}</div>
-          @enderror
+          
         <button type="submit" class="btn btn-primary btn-block">Send</button>
       </form>
     </div>

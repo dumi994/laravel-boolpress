@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<h1>Create a new post</h1>
+<h1>Edit the post</h1>
 @if ($errors->any())
 <div class="alert alert-danger">
     <ul>
@@ -29,6 +29,17 @@
     <div class="form-group">
         <label for="body">Body</label>
         <textarea class="form-control @error('body') is-invalid @enderror" name="body" id="body" rows="4">{{ $post->body}}</textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="category_id">Categories</label>
+        <select class="form-control" name="category_id" id="category_id">
+            <option value="">Select a category</option>
+       
+       @foreach($categories as $category)
+            <option value="{{$category->id}}" {{$category->id == old('category_id', $post->category_id) ? 'selected' : ''}}>{{$category->name}}</option>
+       @endforeach
+     </select>
     </div>
 
     <button type="submit" class="btn btn-success">Update</button>

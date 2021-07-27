@@ -22,7 +22,7 @@
         <small id="titleHelper" class="text-muted">Type a title for the current post, max: 255 char</small>
     </div>
     @error('title')
-    <div class="alert alert-danger">{{ $message }}</div>
+    <div class="alert alert-danger  @error('body') is-invalid @enderror">{{ $message }}</div>
     @enderror
  
     <div class="form-group">
@@ -36,7 +36,17 @@
         <label for="body">Body</label>
         <textarea class="form-control @error('body') is-invalid @enderror" name="body" id="body" rows="4">{{old('body')}}</textarea>
     </div>
-   <!--  -->
+
+   <div class="form-group">
+     <label for="category_id">Categories</label>
+     <select class="form-control" name="category_id" id="category_id">
+       <option value="" disabled>Select a category</option>
+       
+       @foreach($categories as $category)
+            <option value="{{$category->id}}" {{$category->id === old('category_id', $post->category_id) ? 'selected' : "" }} >{{$category->name}}</option>
+       @endforeach
+     </select>
+   </div>
     <button type="submit" class="btn btn-success">Submit</button>
 
 </form>

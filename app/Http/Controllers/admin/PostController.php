@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Category;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -41,7 +43,8 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
-            'image' => 'required | mimes:jpg,bmp,png | max: 5000',
+            'category_id' => 'nullable | exists:categories,id',
+            'image' => 'required | image | max: 5000',
         ]);
         Post::create($validatedData);
         return redirect()->back();
@@ -66,7 +69,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $categories = Category::all();
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -81,8 +85,15 @@ class PostController extends Controller
         $validatedData = $request ->validate([
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
-            'image' => 'required | mimes:jpg,bmp,png | max: 5000',
+            'category_id' => 'nullable | exists:categories,id',
+            'image' => 'required | image | max: 5000',
         ]);
+
+        if(array_key_exists('image', $validatedData)){
+            $file_path = Storage::put('post_images', $validatedData['image']);
+            $validatedData['image'] = $file_path;
+        }
+        
         $post->update($validatedData);
         return redirect()->route('adminposts.index');
     }

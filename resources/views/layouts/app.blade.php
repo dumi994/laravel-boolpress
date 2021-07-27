@@ -32,13 +32,14 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a href="{{route('adminposts.index')}}">Admin Panel</a>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a href="{{route('guests.contacts')}}">Contact Me</a>
+                    <ul class="navbar-nav mr-auto ">
+                        <!-- <li class="nav-item px-2">
+                            <a href="{{route('adminposts.index')}}" class="text-dark">Admin Panel</a>
                         </li> -->
+                        
+                        <li class="nav-item px-2">
+                            <a href="{{route('guests.contacts')}}" class="text-dark dropdown-item">Contact Me</a>
+                        </li>
                    </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -65,12 +66,15 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
+                                    
+                                    <a href="{{route('adminposts.index')}}" class="dropdown-item">Admin Panel</a>
+                            
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </li>
+                            
                         @endguest
                     </ul>
                 </div>

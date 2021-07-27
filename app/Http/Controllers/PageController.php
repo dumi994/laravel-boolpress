@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\ContactFormMail;
+use Illuminate\Support\Facades\Mail;
 class PageController extends Controller
 {
     public function index()
@@ -25,16 +26,17 @@ class PageController extends Controller
     {
         //valida i dati
         //ddd($request->all());
-        $request->validate([
-            'full_name' => 'required',
-            'email' => 'required | email',
-            'nessage' => 'required'
-
+        $validatedData = $request->validate([
+            "full_name" => "required",
+            "email" => "required |email",
+            "message" => "required",
         ]);
 
         //invia la mail
         //return (new ContactFormMail($validatedData))->render();
         Mail::to('admin@test.com')->send(new ContactFormMail($validatedData));
-        return redirect()->back()->with('message', 'Thank you for your email');
+        return redirect()
+        ->back()
+        ->with('message', 'Success! Thank you four your mail');
     }
 }
