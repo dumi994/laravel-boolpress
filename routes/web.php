@@ -30,6 +30,8 @@ Route::post('contacts', 'PageController@sendContactForm')->name('contacts.send')
 Route::get('posts', 'PostController@index')->name('posts.index');
 Route::get('posts/{post}', 'PostController@show')->name('posts.show');
 
+/* Categorie */
+Route::get('categories/{category:slug}', 'CategoryController@show')->name('categories.show');
 
 
 /* admin route */
@@ -41,11 +43,3 @@ Route::middleware('auth')->namespace('admin')->name('admin')->prefix('admin')->g
 /* blocca registrazioni */
 //Auth::routes(['register' => false]);
 
-/* 
-tabella categorie
-- migration
-- model
-- controller (resource nel namespace admin/)
-- seeder
-
-*/
