@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -44,9 +45,16 @@ class PostController extends Controller
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
             'category_id' => 'nullable | exists:categories,id',
-            'image' => 'required | image | max: 5000',
+            'tags' => 'nullable | exists:tags,id',
+            'image' => 'nullable | image | max: 5000',
         ]);
-        Post::create($validatedData);
+        if($request->hasFile('image')){
+            $file_path = Storage::put('post_images', $validatedData['image']);
+            $validatedData['image'] = $file_path;
+        }
+
+        $post = Post::create($validatedData);
+        $post->tags()->attach($request->tags);
         return redirect()->back();
     }
 
@@ -70,7 +78,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -82,11 +91,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+
         $validatedData = $request ->validate([
             'title' => 'required | max:255 | min:5',
             'body' => 'required',
             'category_id' => 'nullable | exists:categories,id',
-            'image' => 'required | image | max: 5000',
+            'tags' => 'nullable | exists:tags,id',
+            'image' => 'nullable | image | max: 5000',
         ]);
 
         if(array_key_exists('image', $validatedData)){
@@ -95,6 +106,7 @@ class PostController extends Controller
         }
         
         $post->update($validatedData);
+        $post->tags()->sync($request->tags);
         return redirect()->route('adminposts.index');
     }
 

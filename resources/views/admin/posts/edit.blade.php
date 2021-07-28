@@ -41,7 +41,21 @@
        @endforeach
      </select>
     </div>
-
+    
+    <div class="form-group">
+        <label for="tags">Tags</label>
+        <select multiple class="form-control" name="tags[]" id="tags">
+            <option disabled>Select a tag</option>
+            @if($tags)
+                @foreach($tags as $tag)
+                @if($errors->any())
+                    <option value="{{$tag->id}}"{{ in_array($tag->id, old('tags') ? 'selected' : '')}}>{{$tag->name}}</option>
+                @endif
+                    <option value="{{$tag->id}}"{{$post->tags->contains($tag) ? 'selected' : ''}}>{{$tag->name}}</option>
+                @endforeach
+            @endif
+        </select>
+    </div>
     <button type="submit" class="btn btn-success">Update</button>
 
 </form>

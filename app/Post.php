@@ -11,4 +11,28 @@ class Post extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+        
+    }
 }
+
+
+
+/* posts table
+
+- id
+- title
+
+tags table
+- id
+- name
+- slug
+
+post_tag pivot table
+- post_id fk
+- tag_id fk
+- [post_id, tag_id] pk
+
+*/
