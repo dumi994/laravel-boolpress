@@ -97,13 +97,16 @@ class PostController extends Controller
             'body' => 'required',
             'category_id' => 'nullable | exists:categories,id',
             'tags' => 'nullable | exists:tags,id',
-            'image' => 'nullable | image | max: 5000',
+            'image' => 'nullable | image |mimes:jpeg,jpg,png| max: 5000',
         ]);
 
         if(array_key_exists('image', $validatedData)){
-            $file_path = Storage::put('post_images', $validatedData['image']);
-            $validatedData['image'] = $file_path;
+            // $file_path = Storage::put('posts_images', $validatedData['image']);
+            $request->image->move(public_path('storage/posts_images'), $validatedData['image']);
+            //$validateData['image'] = $file_path;
+            $validatedData['image'] = public_path('storage/posts_images/');
         }
+        
         
         $post->update($validatedData);
         $post->tags()->sync($request->tags);

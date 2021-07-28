@@ -40,6 +40,9 @@
                         <li class="nav-item px-2">
                             <a href="{{route('guests.contacts')}}" class="text-dark dropdown-item">Contact Me</a>
                         </li>
+                        <li class="nav-item px-2">
+                            <a href="{{route('guests.contacts')}}" class="text-dark dropdown-item">Contact Me</a>
+                        </li>
                    </ul>
 
                     <!-- Right Side Of Navbar -->
