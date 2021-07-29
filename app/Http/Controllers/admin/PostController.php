@@ -29,6 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        $tags = Tag::all();
         $categories = Category::all();
         return view('admin.posts.create', compact('categories'));
     }
@@ -51,6 +52,7 @@ class PostController extends Controller
         if($request->hasFile('image')){
             $file_path = Storage::put('post_images', $validatedData['image']);
             $validatedData['image'] = $file_path;
+           
         }
 
         $post = Post::create($validatedData);
@@ -101,10 +103,10 @@ class PostController extends Controller
         ]);
 
         if(array_key_exists('image', $validatedData)){
-            // $file_path = Storage::put('posts_images', $validatedData['image']);
-            $request->image->move(public_path('storage/posts_images'), $validatedData['image']);
-            //$validateData['image'] = $file_path;
-            $validatedData['image'] = public_path('storage/posts_images/');
+            $file_path = Storage::put('posts_images', $validatedData['image']);
+            $validatedData['image'] = $file_path;
+            // $request->image->move(public_path('storage/posts_images'), $validatedData['image']);
+            // $validatedData['image'] = public_path('storage/posts_images/');
         }
         
         
