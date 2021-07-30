@@ -20,19 +20,3 @@ class Post extends Model
 
 
 
-/* posts table
-
-- id
-- title
-
-tags table
-- id
-- name
-- slug
-
-post_tag pivot table
-- post_id fk
-- tag_id fk
-- [post_id, tag_id] pk
-
-*/
