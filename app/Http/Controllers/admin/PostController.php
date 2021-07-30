@@ -29,9 +29,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        $tags = Tag::all();
         $categories = Category::all();
-        return view('admin.posts.create', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -47,17 +47,16 @@ class PostController extends Controller
             'body' => 'required',
             'category_id' => 'nullable | exists:categories,id',
             'tags' => 'nullable | exists:tags,id',
-            'image' => 'nullable | image | max: 5000',
+            'image' => 'nullable | mimes:jpeg,jpg,png| max: 5000',
         ]);
         if($request->hasFile('image')){
             $file_path = Storage::put('post_images', $validatedData['image']);
             $validatedData['image'] = $file_path;
-           
         }
 
         $post = Post::create($validatedData);
         $post->tags()->attach($request->tags);
-        return redirect()->back();
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -99,14 +98,13 @@ class PostController extends Controller
             'body' => 'required',
             'category_id' => 'nullable | exists:categories,id',
             'tags' => 'nullable | exists:tags,id',
-            'image' => 'nullable | image |mimes:jpeg,jpg,png| max: 5000',
+            'image' => 'nullable | mimes:jpeg,jpg,png| max: 5000',
         ]);
 
         if(array_key_exists('image', $validatedData)){
-            $file_path = Storage::put('posts_images', $validatedData['image']);
+            $file_path = Storage::put('post_images', $validatedData['image']);
             $validatedData['image'] = $file_path;
-            // $request->image->move(public_path('storage/posts_images'), $validatedData['image']);
-            // $validatedData['image'] = public_path('storage/posts_images/');
+            
         }
         
         
