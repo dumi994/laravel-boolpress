@@ -20,8 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 /* Altre Pagine non connesse ad un entitá/modello  */
-Route::get('/', 'PostController@index');
-Route::get('about', 'PostController@about');
+Route::get('/', 'PostController@index')->name('guests.welcome');
+Route::get('about', 'PostController@about')->name('guests.about');
 Route::get('contacts', 'PageController@contacts')->name('guests.contacts');
 Route::post('contacts', 'PageController@sendContactForm')->name('contacts.send');
 

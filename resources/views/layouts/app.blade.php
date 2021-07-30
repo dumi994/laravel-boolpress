@@ -41,7 +41,10 @@
                             <a href="{{route('guests.contacts')}}" class="text-dark dropdown-item">Contact Me</a>
                         </li>
                         <li class="nav-item px-2">
-                            <a href="{{route('guests.contacts')}}" class="text-dark dropdown-item">Contact Me</a>
+                            <a href="{{route('guests.about')}}" class="text-dark dropdown-item">About</a>
+                        </li>
+                        <li class="nav-item px-2">
+                            <a href="{{route('guests.welcome')}}" class="text-dark dropdown-item">Welcome</a>
                         </li>
                    </ul>
 
