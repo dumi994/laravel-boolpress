@@ -49895,6 +49895,9 @@ module.exports = function(module) {
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -49916,7 +49919,20 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    posts: null
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/api/posts').then(function (resp) {
+      console.log(resp);
+      _this.posts = resp.data.data;
+    })["catch"](function (e) {
+      console.error('Sorry ' + e);
+    });
+  }
 });
 
 /***/ }),
@@ -50042,7 +50058,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleError: Module Error (from ./node_modules/resolve-url-loader/index.js):\nresolve-url-loader: loader misconfiguration\n  \"engine\" option is not valid\n    at Object.emitError (D:\\MAMP\\htdocs\\php\\laravel-boolpress\\node_modules\\webpack\\lib\\NormalModule.js:173:6)\n    at handleAsError (D:\\MAMP\\htdocs\\php\\laravel-boolpress\\node_modules\\resolve-url-loader\\index.js:214:12)\n    at Object.resolveUrlLoader (D:\\MAMP\\htdocs\\php\\laravel-boolpress\\node_modules\\resolve-url-loader\\index.js:156:12)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 

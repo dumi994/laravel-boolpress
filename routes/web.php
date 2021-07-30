@@ -20,12 +20,17 @@ Route::get('/', function () {
 Route::get('posts/{post}', function (Post $post) {
     return new PostResource(Post::find($post));
 });
+Route::get('blog', function () {
+    return view('blog');
+});
 
 Auth::routes();
 
 /* Altre Pagine non connesse ad un entitá/modello  */
 Route::get('/', 'PostController@index')->name('guests.welcome');
-Route::get('about', 'PostController@about')->name('guests.about');
+Route::get('welcome', 'PageController@index')->name('guests.welcome');
+
+Route::get('about', 'PageController@about')->name('guests.about');
 Route::get('contacts', 'PageController@contacts')->name('guests.contacts');
 Route::post('contacts', 'PageController@sendContactForm')->name('contacts.send');
 

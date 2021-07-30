@@ -46,6 +46,9 @@
                         <li class="nav-item px-2">
                             <a href="{{route('guests.welcome')}}" class="text-dark dropdown-item">Welcome</a>
                         </li>
+                        <li class="nav-item px-2">
+                            <a href="{{route('guests.about')}}" class="text-dark dropdown-item">About</a>
+                        </li>
                    </ul>
 
                     <!-- Right Side Of Navbar -->
