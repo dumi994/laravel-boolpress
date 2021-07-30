@@ -10942,3 +10942,9 @@ a.text-dark:focus {
   }
 }
 
+.card {
+  background-color: #fdfdfd;
+  margin: 10px;
+  text-transform: capitalize;
+}
+

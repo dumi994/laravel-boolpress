@@ -121,6 +121,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->detach();
         $post->delete();
         //ddd($post);
         //return redirect()->back()->with('message','Post is completely deleted');

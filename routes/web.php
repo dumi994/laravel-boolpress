@@ -1,7 +1,8 @@
 <?php
+use App\Post;
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Resources\PostResource;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('posts/{post}', function (Post $post) {
+    return new PostResource(Post::find($post));
 });
 
 Auth::routes();

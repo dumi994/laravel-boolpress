@@ -6,3 +6,9 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.card{
+    background-color: rgb(253, 253, 253);
+    margin:10px;
+    text-transform: capitalize;
+}
