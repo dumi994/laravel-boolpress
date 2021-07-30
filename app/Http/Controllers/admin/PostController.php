@@ -122,6 +122,8 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
+        //ddd($post);
+        //return redirect()->back()->with('message','Post is completely deleted');
         return redirect()->route('adminposts.index');
 
     }

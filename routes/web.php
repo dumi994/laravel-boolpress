@@ -38,6 +38,7 @@ Route::get('categories/{category:slug}', 'CategoryController@show')->name('categ
 Route::middleware('auth')->namespace('admin')->name('admin')->prefix('admin')->group(function (){
     Route::get('/', 'HomeController@index')->name('dashboard');
     Route::resource('posts', PostController::class);
+    
 });
 
 /* blocca registrazioni */
